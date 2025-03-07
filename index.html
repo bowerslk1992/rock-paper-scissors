@@ -20,8 +20,6 @@
             
         }
 
-        
-
     //Write a function to play a round
 
         function winner(playerChoice, computerChoice){
@@ -52,9 +50,38 @@
                 }
         }
 
-        const playerChoice = prompt ("Make a choice: rock, paper, or scissors?");
-        const computerChoice = getComputerChoice();
-        console.log(playRound(playerChoice, computerChoice));
+        //Get player choice
+
+        function getPlayerChoice(){
+            let validatedInput = false;
+            while(validatedInput == false){
+                const choice = prompt("Rock, paper, or scissors?");
+                if(choice == null){
+                    continue;
+                }
+                const choiceInLower = choice.toLowerCase();
+                if(options.includes(choiceInLower)){
+                    validatedInput = true;
+                    return choiceInLower;
+                }
+            }
+        }
+        
+        //Play 5 rounds 
+
+        function playGame(){
+        
+            console.log("Welcome!")
+            for (let i = 0; i < 5; i++){
+                const playerChoice = getPlayerChoice();
+                const computerChoice = getComputerChoice();
+                console.log(playRound(playerChoice, computerChoice));
+            }
+
+            console.log("Game Over")
+        }
+
+        playGame()
 
 
     
