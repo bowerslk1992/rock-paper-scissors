@@ -7,42 +7,59 @@
 </head>
 <body>
     <script>
-    
         
-    //Write a function called getComputerChoice to return a string of either "rock", "paper," or "scissors"
+    //Write a function to get computer choice
 
-        let computer = Math.floor(Math.random() * 3);
-        console.log(computer)
+
+        let options = ["rock", "paper", "scissors"];
 
         function getComputerChoice(){
-        
-        if(computer === 0){
-            return "rock"
-        } else if(computer === 1){
-            return "paper"
-        } else{
-            return "scissors"
-        }
-        
+            const computerChoice = options[Math.floor(Math.random() * options.length)];
+            console.log(computerChoice)
+            return computerChoice
+            
         }
 
-        console.log(getComputerChoice())
+        
 
-    //Write a function called getHumanChoice to prompt the user to make their choice
+    //Write a function to play a round
+
+        function winner(playerChoice, computerChoice){
+            if(playerChoice == computerChoice){
+                return "tie";
+            }
+            else if(
+                    (playerChoice == "rock" && computerChoice == "scissors") ||
+                    (playerChoice == "scissors" && computerChoice == "paper") ||
+                    (playerChoice == "paper" && computerChoice == "rock")  
+            ){
+                return "player"
+            }
+            else{
+                return "computer"
+            }
+           
+        }
+
+        function playRound(playerChoice, computerChoice){
+                const result = winner(playerChoice, computerChoice);
+                if(result == "tie"){
+                    return "It's a tie!"
+                }else if(result == "player"){
+                    return "You win!"
+                }else{
+                    return "You lose!"
+                }
+        }
+
+        const playerChoice = prompt ("Make a choice: rock, paper, or scissors?");
+        const computerChoice = getComputerChoice();
+        console.log(playRound(playerChoice, computerChoice));
+
 
     
-    function getHumanChoice(){
-        let human = prompt("Make a choice: rock, paper, or scissors?")
-        return human 
-    }
-    let human = getHumanChoice().toLowerCase();
-    console.log(human)
-
-    //Declare the player scores variable 
-
-    let humanScore = 0;
-    let computerScore = 0;
-
+    
+        
     </script>
 </body>
 </html>
